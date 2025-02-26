@@ -5,12 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using MyProject.Application.DTOs;
-using MyProject.Core;
+using MyProject.Application.Interfaces;
+using MyProject.Core.Entities;
 using MyProject.Core.Interfaces;
 
 namespace MyProject.Application.Services
 {
-    public class BookService
+    public class BookService: IBookService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

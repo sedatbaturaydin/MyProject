@@ -1,17 +1,20 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models; // Add this using directive
+using Microsoft.OpenApi.Models;
+using MyProject.Application.Common.Mappings;
 using MyProject.Application.Extensions;
+using MyProject.Application.Interfaces;
 using MyProject.Application.Services;
 using MyProject.Core.Interfaces;
 using MyProject.Infrastructure.Data;
 using MyProject.Infrastructure.Repositories;
-using Swashbuckle.AspNetCore.Swagger; // Add this using directive
+using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Add services to the container.
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 builder.Services.AddControllers();
 builder.Services.AddAuthorization();
 
@@ -19,35 +22,32 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
-// OpenAPI (Swagger) servislerini ekleyelim
-builder.Services.AddEndpointsApiExplorer(); // Swagger için gerekli
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddOpenApi();
 builder.Services.AddApplicationServices();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-//builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<BookService>();
-builder.Services.AddScoped<IBookRepository, BookRepository>();
-builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IBookService,BookService>();
+builder.Services.AddScoped<IAuthorService,AuthorService>();
+builder.Services.AddScoped<IGenreService,GenreService>();
 
 var app = builder.Build();
 
-// Middleware ekleyelim
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage(); // Hata ayýklama için
-    app.UseSwagger();                // Swagger UI için gerekli
-    app.UseSwaggerUI();              // Swagger UI için gerekli
+    app.UseDeveloperExceptionPage(); 
+    app.UseSwagger();
+    app.UseSwaggerUI();
 
     app.MapOpenApi();
 }
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization(); // Eðer Authentication ekleyeceksen
+app.UseAuthorization();
 
-app.MapControllers(); // API endpoint'lerini ekleyelim
+app.MapControllers();
 
 app.Run();

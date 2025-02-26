@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using MyProject.Application.DTOs;
-using MyProject.Core;
+using MyProject.Core.Entities;
 
 namespace MyProject.Application.Common.Mappings
 {
@@ -14,7 +14,8 @@ namespace MyProject.Application.Common.Mappings
         public MappingProfile()
         {
             CreateMap<Book, BookDto>().ReverseMap();
-            //CreateMap<Author, AuthorDto>().ReverseMap();
+            CreateMap<Author, AuthorDto>().ReverseMap();
+            CreateMap<Genre, GenreDto>().ReverseMap();
         }
     }
 }

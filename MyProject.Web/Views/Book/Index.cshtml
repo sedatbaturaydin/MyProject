@@ -1,0 +1,27 @@
+﻿@model IEnumerable<MyProject.Application.DTOs.BookDto>
+
+<h2>Books</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Name</td>
+                <td>@book.Price</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@book.Id" class="btn btn-info">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using MyProject.Core;
 using MyProject.Core.Interfaces;
 using MyProject.Infrastructure.Data;
+using MyProject.Core.Entities;
 
 namespace MyProject.Infrastructure.Repositories
 {
