@@ -1,0 +1,51 @@
+﻿@model MyProject.Web.ViewModels.BookCreateViewModel
+
+@{
+    ViewData["Title"] = "Create Book";
+}
+
+<h2>Create a New Book</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Book.Title" class="control-label"></label>
+        <input asp-for="Book.Title" class="form-control" />
+        <span asp-validation-for="Book.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Book.PublishYear" class="control-label"></label>
+        <input asp-for="Book.PublishYear" type="date" class="form-control" />
+        <span asp-validation-for="Book.PublishYear" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Book.Description" class="control-label"></label>
+        <textarea asp-for="Book.Description" class="form-control"></textarea>
+        <span asp-validation-for="Book.Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Book.Page" class="control-label"></label>
+        <input asp-for="Book.Page" type="number" class="form-control" />
+        <span asp-validation-for="Book.Page" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Book.AuthorId" class="control-label"></label>
+        <select asp-for="Book.AuthorId" class="form-control" asp-items="Model.Authors">
+            <option value="">Select an author</option>
+        </select>
+        <span asp-validation-for="Book.AuthorId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Book.GenreId" class="control-label"></label>
+        <select asp-for="Book.GenreId" class="form-control" asp-items="Model.Genres">
+            <option value="">Select a genre</option>
+        </select>
+        <span asp-validation-for="Book.GenreId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>

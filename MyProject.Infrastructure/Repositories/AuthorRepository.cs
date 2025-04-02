@@ -7,6 +7,8 @@ using MyProject.Core;
 using MyProject.Core.Interfaces;
 using MyProject.Infrastructure.Data;
 using MyProject.Core.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyProject.Infrastructure.Repositories
 {

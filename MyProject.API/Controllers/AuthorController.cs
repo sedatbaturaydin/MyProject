@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyProject.Application.DTOs;
+using MyProject.Application.Interfaces;
 using MyProject.Application.Services;
 
 namespace MyProject.API.Controllers
@@ -8,9 +9,9 @@ namespace MyProject.API.Controllers
     [Route("api/[controller]")]
     public class AuthorController : ControllerBase
     {
-        private readonly AuthorService _authorService;
+        private readonly IAuthorService _authorService;
 
-        public AuthorController(AuthorService authorService)
+        public AuthorController(IAuthorService authorService)
         {
             _authorService = authorService;
         }

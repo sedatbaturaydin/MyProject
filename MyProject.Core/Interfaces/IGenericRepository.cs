@@ -13,5 +13,7 @@ namespace MyProject.Core.Interfaces
         Task AddAsync(T entity);
         Task UpdateAsync(T entity);
         Task DeleteAsync(Guid id);
+
+        Task AddRangeAsync(List<T> entities);
     }
 }

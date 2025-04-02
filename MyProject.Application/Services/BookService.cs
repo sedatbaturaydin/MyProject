@@ -51,5 +51,11 @@ namespace MyProject.Application.Services
         {
             await _unitOfWork.Books.DeleteAsync(id);
         }
+
+        public async Task AddRangeAsync(List<BookDto> booksDto)
+        {
+            var books = _mapper.Map<List<Book>>(booksDto);
+            await _unitOfWork.Books.AddRangeAsync(books);   
+        }
     }
 }

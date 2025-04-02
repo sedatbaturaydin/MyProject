@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyProject.Application.DTOs;
+using MyProject.Application.Interfaces;
 using MyProject.Application.Services;
 
 namespace MyProject.API.Controllers
@@ -8,9 +9,9 @@ namespace MyProject.API.Controllers
     [Route("api/[controller]")]
     public class GenreController : ControllerBase
     {
-        private readonly GenreService _genreService;
+        private readonly IGenreService _genreService;
 
-        public GenreController(GenreService genreService)
+        public GenreController(IGenreService genreService)
         {
             _genreService = genreService;
         }

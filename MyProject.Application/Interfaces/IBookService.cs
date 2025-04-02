@@ -17,5 +17,7 @@ namespace MyProject.Application.Interfaces
         Task<BookDto> AddAsync(BookDto bookDto);
         Task UpdateAsync(BookDto bookDto);
         Task DeleteAsync(Guid id);
+
+        Task AddRangeAsync(List<BookDto> booksDto);
     }
 }

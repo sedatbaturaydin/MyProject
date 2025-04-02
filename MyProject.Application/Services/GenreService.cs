@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using AutoMapper;
 using MyProject.Application.DTOs;
 using MyProject.Application.Interfaces;
@@ -50,6 +51,22 @@ namespace MyProject.Application.Services
         public async Task DeleteAsync(Guid id)
         {
             await _unitOfWork.Genres.DeleteAsync(id);
+        }
+
+        public async Task<List<SelectListItem>> GetGenreSelectListAsync()
+        {
+            var Genres = await _unitOfWork.Genres.GetAllAsync();
+            return Genres.Select(a => new SelectListItem
+            {
+                Text = a.Name,
+                Value = a.Id.ToString()
+            }).ToList() ?? new List<SelectListItem>(); // NULL GELİRSE BOŞ DÖN
+        }
+
+        public async Task AddRangeAsync(List<GenreDto> genresDto)
+        {
+            var genres = _mapper.Map<List<Genre>>(genresDto);
+            await _unitOfWork.Genres.AddRangeAsync(genres);
         }
     }
 }
